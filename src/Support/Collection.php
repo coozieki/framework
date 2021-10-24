@@ -7,7 +7,7 @@ class Collection
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(protected array $elements)
+    public function __construct(protected array $elements = [])
     {
     }
 
