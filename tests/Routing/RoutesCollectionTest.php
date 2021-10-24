@@ -3,7 +3,7 @@
 namespace tests\Support;
 
 use App\Contracts\Http\Request;
-use App\Routing\Route;
+use App\Contracts\Routing\Route;
 use App\Routing\RoutesCollection;
 use PHPUnit\Framework\TestCase;
 

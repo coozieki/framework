@@ -1,8 +1,8 @@
 <?php
 
-namespace tests;
+namespace tests\Core;
 
-use App\App;
+use App\Core\App;
 use App\Contracts\Container\Container;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class AppTest extends TestCase
 {
     /**
-     * @covers \App\App::make
+     * @covers \App\Core\App::make
      */
     public function testMake(): void
     {
@@ -29,7 +29,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \App\App::bind
+     * @covers \App\Core\App::bind
      */
     public function testBind(): void
     {
@@ -47,7 +47,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \App\App::singleton
+     * @covers \App\Core\App::singleton
      */
     public function testSingleton(): void
     {

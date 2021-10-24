@@ -2,7 +2,9 @@
 
 namespace App\Routing;
 
-class Route
+use App\Contracts\Routing\Route as RouteInterface;
+
+class Route implements RouteInterface
 {
     /**
      * @codeCoverageIgnore
