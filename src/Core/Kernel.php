@@ -21,6 +21,8 @@ class Kernel
 
     public function handle(Request $request): Response
     {
+        $this->router->formRouteList();
+
         $route = $this->router->getRequestedRoute($request);
 
         return $this->controllerInvoker->invoke($route->getController(), $route->getControllerMethod());

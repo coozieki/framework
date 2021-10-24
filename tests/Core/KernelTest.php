@@ -39,6 +39,8 @@ class KernelTest extends TestCase
 
         $router = $this->createMock(Router::class);
         $router->expects(self::once())
+            ->method('formRouteList');
+        $router->expects(self::once())
             ->method('getRequestedRoute')
             ->with($request)
             ->willReturn($route);

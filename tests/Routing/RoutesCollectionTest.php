@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Support;
+namespace tests\Routing;
 
 use App\Contracts\Http\Request;
 use App\Contracts\Routing\Route;
