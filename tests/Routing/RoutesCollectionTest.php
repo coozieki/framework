@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class RoutesCollectionTest extends TestCase
 {
     /**
-     * @covers \App\Routing\RoutesCollection::findByUri
+     * @covers \App\Routing\RoutesCollection::findRequestedRoute
      */
     public function testFindRequestedRouteWhenFound(): void
     {
@@ -43,7 +43,7 @@ class RoutesCollectionTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\RoutesCollection::findByUri
+     * @covers \App\Routing\RoutesCollection::findRequestedRoute
      */
     public function testFindRequestedRouteWhenNotFound(): void
     {
