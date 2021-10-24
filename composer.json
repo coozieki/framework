@@ -1,0 +1,19 @@
+{
+    "name": "coozieki/framework",
+    "description": "Practice project to replicate PHP frameworks functionality",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vadim.vorobyev",
+            "email": "vadimvor.work@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~8.0",
+        "coozieki/ioc-container": "dev-main"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.5"
+    }
+}
