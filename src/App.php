@@ -6,10 +6,19 @@ use App\Contracts\Container;
 
 class App
 {
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param Container $container
+     */
     public function __construct(private Container $container)
     {
     }
 
+    /**
+     * @param string $class
+     * @return mixed
+     */
     public function make(string $class): mixed
     {
         return $this->container->resolve($class);

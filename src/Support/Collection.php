@@ -16,13 +16,6 @@ class Collection
         return $this->elements;
     }
 
-    public function where(string $key, mixed $value): static
-    {
-        return new static(
-            array_filter($this->elements, static fn(mixed $el) => $el[$key] === $value)
-        );
-    }
-
     public function push(mixed $value): void
     {
         $this->elements[] = $value;

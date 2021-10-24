@@ -9,6 +9,11 @@ use ReflectionException;
 
 class Container implements ContainerInterface
 {
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param PackageContainer $container
+     */
     public function __construct(private PackageContainer $container)
     {
     }

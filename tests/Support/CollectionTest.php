@@ -19,31 +19,6 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @covers \App\Support\Collection::where
-     * @covers \App\Support\Collection::all
-     */
-    public function testWhereWhenFound(): void
-    {
-        $initialArray = [
-            [
-                'field' => 5
-            ],
-            [
-                'field' => 4
-            ]
-        ];
-        $expectedResult = [
-            ['field' => 5]
-        ];
-
-        $collection = new Collection($initialArray);
-        $newCollection = $collection->where('field', 5);
-
-        $this->assertNotSame($collection, $newCollection);
-        $this->assertEquals($expectedResult, $newCollection->all());
-    }
-
-    /**
      * @covers \App\Support\Collection::push
      * @covers \App\Support\Collection::all
      */
