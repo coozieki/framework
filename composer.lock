@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb6d41af6ac3c48453b788cc24213e40",
+    "content-hash": "559ec4f5d62aa7d09da732cab5ff6d7f",
     "packages": [
         {
             "name": "coozieki/ioc-container",
@@ -1964,6 +1964,45 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
+            "name": "sempro/phpunit-pretty-print",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/s360digital/phpunit-pretty-print.git",
+                "reference": "63f4cf31315be4134405b49f341d0af3254c339c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/s360digital/phpunit-pretty-print/zipball/63f4cf31315be4134405b49f341d0af3254c339c",
+                "reference": "63f4cf31315be4134405b49f341d0af3254c339c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "phpunit/phpunit": "^7 || ^8 || ^9"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sempro\\PHPUnitPrettyPrinter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Prettify PHPUnit output",
+            "support": {
+                "issues": "https://github.com/s360digital/phpunit-pretty-print/issues",
+                "source": "https://github.com/s360digital/phpunit-pretty-print/tree/develop"
+            },
+            "time": "2021-01-04T13:25:12+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "dev-main",
             "source": {
@@ -2159,7 +2198,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "coozieki/ioc-container": 20
+        "coozieki/ioc-container": 20,
+        "sempro/phpunit-pretty-print": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
