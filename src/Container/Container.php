@@ -2,7 +2,7 @@
 
 namespace App\Container;
 
-use App\Contracts\Container as ContainerInterface;
+use App\Contracts\Container\Container as ContainerInterface;
 use Container\Container as PackageContainer;
 use Container\UnresolvableBindingException;
 use ReflectionException;

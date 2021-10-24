@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Contracts\Container;
+use App\Contracts\Container\Container;
 
 class App
 {

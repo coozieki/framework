@@ -3,7 +3,7 @@
 namespace tests;
 
 use App\App;
-use App\Contracts\Container;
+use App\Contracts\Container\Container;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
