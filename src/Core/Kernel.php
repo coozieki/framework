@@ -5,7 +5,6 @@ namespace App\Core;
 use App\Contracts\Http\ControllerFactory;
 use App\Contracts\Http\Request;
 use App\Contracts\Http\Response;
-use App\Contracts\Http\ResponseFactory;
 use App\Contracts\Routing\Router;
 
 class Kernel
@@ -15,12 +14,10 @@ class Kernel
      *
      * @param Router $router
      * @param ControllerFactory $controllerFactory
-     * @param ResponseFactory $responseFactory
      */
     public function __construct(
         private Router $router,
-        private ControllerFactory $controllerFactory,
-        private ResponseFactory $responseFactory
+        private ControllerFactory $controllerFactory
     ) {
     }
 

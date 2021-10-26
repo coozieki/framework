@@ -33,8 +33,6 @@ class KernelTest extends TestCase
             ->method('getControllerMethod')
             ->willReturn($method);
 
-        $responseFactory = $this->createMock(ResponseFactory::class);
-
         $controllerInstance = $this->createMock(Controller::class);
         $controllerInstance->expects(self::once())
             ->method('call')
@@ -55,7 +53,7 @@ class KernelTest extends TestCase
             ->with($request)
             ->willReturn($route);
 
-        $kernel = new Kernel($router, $controllerFactory, $responseFactory);
+        $kernel = new Kernel($router, $controllerFactory);
 
         $this->assertEquals($response, $kernel->handle($request));
     }
