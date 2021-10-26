@@ -64,4 +64,21 @@ class RouterTest extends TestCase
 
         $router->formRouteList();
     }
+
+    /**
+     * @covers \App\Routing\Router::getRoutes
+     */
+    public function testGetRoutes(): void
+    {
+        $routes = [$this->createMock(Route::class), $this->createMock(Route::class)];
+
+        $collection = $this->createMock(RoutesCollection::class);
+        $collection->expects(self::once())
+            ->method('all')
+            ->willReturn($routes);
+
+        $router = new Router($collection);
+
+        $this->assertEquals($routes, $router->getRoutes());
+    }
 }

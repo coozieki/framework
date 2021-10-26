@@ -37,6 +37,9 @@ class Controller implements ControllerInterface
         $this->templator = $templator;
     }
 
+    /**
+     * @throws ConfigurationException
+     */
     protected function render(string $view, array $params = []): Response
     {
         if (empty($this->responseFactory)) {

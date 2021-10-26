@@ -7,8 +7,6 @@ use App\Contracts\Http\ResponseFactory;
 use App\Contracts\View\Templator;
 use App\Core\App;
 use App\Http\ControllerFactory;
-use App\Http\Response\NotFoundResponse;
-use App\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class ControllerFactoryTest extends TestCase

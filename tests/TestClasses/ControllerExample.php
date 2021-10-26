@@ -2,12 +2,16 @@
 
 namespace tests\TestClasses;
 
+use App\Contracts\Http\Response;
+use App\Exceptions\ConfigurationException;
 use App\Http\Controller;
-use App\Http\HtmlResponse;
 
 class ControllerExample extends Controller
 {
-    public function index()
+    /**
+     * @throws ConfigurationException
+     */
+    public function index(): Response
     {
         return $this->render('view');
     }

@@ -7,7 +7,6 @@ use App\Contracts\Routing\Route;
 use App\Contracts\Routing\Router as RouterInterface;
 use App\Routing\Exceptions\NotFoundException;
 use proj\MyController;
-use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 class Router implements RouterInterface
 {
@@ -38,5 +37,10 @@ class Router implements RouterInterface
     {
         $this->collection->push(new \App\Routing\Route('/index', MyController::class, 'index', 'GET'));
         $this->collection->push(new \App\Routing\Route('/post', MyController::class, 'post', 'POST'));
+    }
+
+    public function getRoutes(): array
+    {
+        return $this->collection->all();
     }
 }
