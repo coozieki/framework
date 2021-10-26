@@ -2,9 +2,11 @@
 
 namespace tests\Core;
 
-use App\Contracts\Http\ControllerInvoker;
+use App\Contracts\Http\Controller;
+use App\Contracts\Http\ControllerFactory;
 use App\Contracts\Http\Request;
 use App\Contracts\Http\Response;
+use App\Contracts\Http\ResponseFactory;
 use App\Contracts\Routing\Router;
 use App\Contracts\Routing\Route;
 use App\Core\Kernel;
@@ -31,11 +33,19 @@ class KernelTest extends TestCase
             ->method('getControllerMethod')
             ->willReturn($method);
 
-        $controllerInvoker = $this->createMock(ControllerInvoker::class);
-        $controllerInvoker->expects(self::once())
-            ->method('invoke')
-            ->with($controller, $method)
+        $responseFactory = $this->createMock(ResponseFactory::class);
+
+        $controllerInstance = $this->createMock(Controller::class);
+        $controllerInstance->expects(self::once())
+            ->method('call')
+            ->with($responseFactory, $method)
             ->willReturn($response);
+
+        $controllerFactory = $this->createMock(ControllerFactory::class);
+        $controllerFactory->expects(self::once())
+            ->method('create')
+            ->with($controller)
+            ->willReturn($controllerInstance);
 
         $router = $this->createMock(Router::class);
         $router->expects(self::once())
@@ -45,7 +55,7 @@ class KernelTest extends TestCase
             ->with($request)
             ->willReturn($route);
 
-        $kernel = new Kernel($router, $controllerInvoker);
+        $kernel = new Kernel($router, $controllerFactory, $responseFactory);
 
         $this->assertEquals($response, $kernel->handle($request));
     }

@@ -2,9 +2,10 @@
 
 namespace App\Core;
 
-use App\Contracts\Http\ControllerInvoker;
+use App\Contracts\Http\ControllerFactory;
 use App\Contracts\Http\Request;
 use App\Contracts\Http\Response;
+use App\Contracts\Http\ResponseFactory;
 use App\Contracts\Routing\Router;
 
 class Kernel
@@ -13,10 +14,14 @@ class Kernel
      * @codeCoverageIgnore
      *
      * @param Router $router
-     * @param ControllerInvoker $controllerInvoker
+     * @param ControllerFactory $controllerFactory
+     * @param ResponseFactory $responseFactory
      */
-    public function __construct(private Router $router, private ControllerInvoker $controllerInvoker)
-    {
+    public function __construct(
+        private Router $router,
+        private ControllerFactory $controllerFactory,
+        private ResponseFactory $responseFactory
+    ) {
     }
 
     public function handle(Request $request): Response
@@ -25,6 +30,8 @@ class Kernel
 
         $route = $this->router->getRequestedRoute($request);
 
-        return $this->controllerInvoker->invoke($route->getController(), $route->getControllerMethod());
+        $controller = $this->controllerFactory->create($route->getController());
+
+        return $controller->call($this->responseFactory, $route->getControllerMethod());
     }
 }

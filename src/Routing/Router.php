@@ -5,6 +5,7 @@ namespace App\Routing;
 use App\Contracts\Http\Request;
 use App\Contracts\Routing\Route;
 use App\Contracts\Routing\Router as RouterInterface;
+use proj\MyController;
 
 class Router implements RouterInterface
 {
@@ -22,7 +23,7 @@ class Router implements RouterInterface
         return $this->collection->findRequestedRoute($request);
     }
 
-    public function formRouteList()
+    public function formRouteList(): void
     {
         $this->collection->push(new \App\Routing\Route('/index', MyController::class, 'index', 'GET'));
     }

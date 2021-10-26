@@ -19,3 +19,4 @@ Homestead.json
 .phpunit.cache/
 coverage.txt
 app/
+views/
