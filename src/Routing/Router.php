@@ -27,5 +27,6 @@ class Router implements RouterInterface
     public function formRouteList(): void
     {
         $this->collection->push(new \App\Routing\Route('/index', MyController::class, 'index', 'GET'));
+        $this->collection->push(new \App\Routing\Route('/post', MyController::class, 'post', 'POST'));
     }
 }
