@@ -24,7 +24,7 @@ class Route implements RouteInterface
     /**
      * @var string|null
      */
-    private ?string $name;
+    private $name;
 
     public static function get(string $uri, array $controllerParams): static
     {

@@ -5,6 +5,7 @@ namespace tests\Http;
 use App\Exceptions\NotImplementedException;
 use App\Http\Response\HtmlResponse;
 use App\Http\Response\NotFoundResponse;
+use App\Http\Response\ServerErrorResponse;
 use App\Http\ResponseFactory;
 use PHPUnit\Framework\TestCase;
 
