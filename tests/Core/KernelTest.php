@@ -10,8 +10,8 @@ use App\Contracts\Http\ResponseFactory;
 use App\Contracts\Routing\Router;
 use App\Contracts\Routing\Route;
 use App\Core\Kernel;
-use App\Http\NotFoundResponse;
-use App\Http\ServerErrorResponse;
+use App\Http\Response\NotFoundResponse;
+use App\Http\Response\ServerErrorResponse;
 use App\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 

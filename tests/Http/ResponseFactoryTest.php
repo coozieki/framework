@@ -3,10 +3,10 @@
 namespace tests\Http;
 
 use App\Exceptions\NotImplementedException;
-use App\Http\HtmlResponse;
-use App\Http\NotFoundResponse;
+use App\Http\Response\HtmlResponse;
+use App\Http\Response\NotFoundResponse;
 use App\Http\ResponseFactory;
-use App\Http\ServerErrorResponse;
+use App\Http\Response\ServerErrorResponse;
 use PHPUnit\Framework\TestCase;
 
 class ResponseFactoryTest extends TestCase
@@ -51,6 +51,6 @@ class ResponseFactoryTest extends TestCase
     {
         $factory = new ResponseFactory();
 
-        $this->assertEquals(new ServerErrorResponse(), $factory->serverError());
+        $this->assertEquals(new \App\Http\Response\ServerErrorResponse(), $factory->serverError());
     }
 }

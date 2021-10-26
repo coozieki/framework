@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Response;
 
 use App\Contracts\Http\Response;
 
