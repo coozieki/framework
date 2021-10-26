@@ -20,4 +20,14 @@ class ResponseFactory implements ResponseFactoryInterface
     {
         throw new NotImplementedException();
     }
+
+    public function serverError(): Response
+    {
+        return new ServerErrorResponse();
+    }
+
+    public function notFound(): Response
+    {
+        return new NotFoundResponse();
+    }
 }

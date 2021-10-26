@@ -7,6 +7,8 @@ use App\Contracts\Http\ResponseFactory;
 use App\Contracts\View\Templator;
 use App\Core\App;
 use App\Http\ControllerFactory;
+use App\Http\NotFoundResponse;
+use App\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class ControllerFactoryTest extends TestCase
@@ -16,7 +18,7 @@ class ControllerFactoryTest extends TestCase
      *
      * @covers \App\Http\ControllerFactory::create
      */
-    public function testCreate(string $controller): void
+    public function testCreateWhenControllerExists(string $controller): void
     {
         $controllerInstance = $this->createMock($controller);
 

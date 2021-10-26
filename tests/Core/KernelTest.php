@@ -10,6 +10,9 @@ use App\Contracts\Http\ResponseFactory;
 use App\Contracts\Routing\Router;
 use App\Contracts\Routing\Route;
 use App\Core\Kernel;
+use App\Http\NotFoundResponse;
+use App\Http\ServerErrorResponse;
+use App\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
@@ -17,7 +20,45 @@ class KernelTest extends TestCase
     /**
      * @covers \App\Core\Kernel::handle
      */
-    public function testHandle(): void
+    public function testHandleWhenRouteNotFound(): void
+    {
+        $controller = '::controller::';
+
+        $request = $this->createMock(Request::class);
+        $response = $this->createMock(NotFoundResponse::class);
+
+        $route = $this->createMock(Route::class);
+        $route->expects(self::once())
+            ->method('getController')
+            ->willReturn($controller);
+
+        $controllerFactory = $this->createMock(ControllerFactory::class);
+        $controllerFactory->expects(self::once())
+            ->method('create')
+            ->willThrowException($this->createMock(NotFoundException::class));
+
+        $router = $this->createMock(Router::class);
+        $router->expects(self::once())
+            ->method('formRouteList');
+        $router->expects(self::once())
+            ->method('getRequestedRoute')
+            ->with($request)
+            ->willReturn($route);
+
+        $responseFactory = $this->createMock(ResponseFactory::class);
+        $responseFactory->expects(self::once())
+            ->method('notFound')
+            ->willReturn($response);
+
+        $kernel = new Kernel($router, $controllerFactory, $responseFactory);
+
+        $this->assertEquals($response, $kernel->handle($request));
+    }
+
+    /**
+     * @covers \App\Core\Kernel::handle
+     */
+    public function testHandleWhenRouteFound(): void
     {
         $controller = '::controller::';
         $method = '::method::';
@@ -53,8 +94,30 @@ class KernelTest extends TestCase
             ->with($request)
             ->willReturn($route);
 
-        $kernel = new Kernel($router, $controllerFactory);
+        $kernel = new Kernel($router, $controllerFactory, $this->createMock(ResponseFactory::class));
 
         $this->assertEquals($response, $kernel->handle($request));
+    }
+
+    /**
+     * @covers \App\Core\Kernel::handle
+     */
+    public function testHandleWhenThrowsServerError(): void
+    {
+        $response = $this->createMock(ServerErrorResponse::class);
+
+        $router = $this->createMock(Router::class);
+        $router->expects(self::once())
+            ->method('formRouteList')
+            ->willThrowException(new \Exception());
+
+        $responseFactory = $this->createMock(ResponseFactory::class);
+        $responseFactory->expects(self::once())
+            ->method('serverError')
+            ->willReturn($response);
+
+        $kernel = new Kernel($router, $this->createMock(ControllerFactory::class), $responseFactory);
+
+        $this->assertEquals($response, $kernel->handle($this->createMock(Request::class)));
     }
 }

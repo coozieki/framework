@@ -6,7 +6,7 @@ use App\Contracts\Http\Response;
 use JsonException;
 
 /**
- * @codeCoverageIgnore 
+ * @codeCoverageIgnore
  */
 class JsonResponse implements Response
 {

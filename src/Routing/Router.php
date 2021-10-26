@@ -5,7 +5,9 @@ namespace App\Routing;
 use App\Contracts\Http\Request;
 use App\Contracts\Routing\Route;
 use App\Contracts\Routing\Router as RouterInterface;
+use App\Routing\Exceptions\NotFoundException;
 use proj\MyController;
+use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 class Router implements RouterInterface
 {
@@ -18,9 +20,17 @@ class Router implements RouterInterface
     {
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function getRequestedRoute(Request $request): Route
     {
-        return $this->collection->findRequestedRoute($request);
+        $route =  $this->collection->findRequestedRoute($request);
+        if ($route === null) {
+            throw new NotFoundException();
+        }
+
+        return $route;
     }
 
     //TODO: implement method
