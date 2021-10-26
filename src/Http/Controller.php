@@ -5,35 +5,47 @@ namespace App\Http;
 use App\Contracts\Http\Controller as ControllerInterface;
 use App\Contracts\Http\Response;
 use App\Contracts\Http\ResponseFactory;
+use App\Contracts\View\Templator;
+use App\Exceptions\ConfigurationException;
 use App\Exceptions\MethodNotFoundException;
 
 class Controller implements ControllerInterface
 {
     private ResponseFactory $responseFactory;
 
-    protected string $viewPath = 'views/';
+    private Templator $templator;
 
     /**
      * @throws MethodNotFoundException
      */
-    public function call(ResponseFactory $responseFactory, string $method): Response
+    public function call(string $method): Response
     {
         if (!method_exists($this, $method)) {
             throw new MethodNotFoundException(sprintf('Method "%s" not found in "%s"', $method, static::class));
         }
 
-        $this->responseFactory = $responseFactory;
-
         return $this->$method();
+    }
+
+    public function setResponseFactory(ResponseFactory $responseFactory): void
+    {
+        $this->responseFactory = $responseFactory;
+    }
+
+    public function setTemplator(Templator $templator): void
+    {
+        $this->templator = $templator;
     }
 
     protected function render(string $view, array $params = []): Response
     {
-        extract($params, EXTR_OVERWRITE);
+        if (empty($this->responseFactory)) {
+            throw new ConfigurationException('ResponseFactory is not set.');
+        }
+        if (empty($this->templator)) {
+            throw new ConfigurationException('Templator is not set.');
+        }
 
-        ob_start();
-        include $this->viewPath . $view . '.php';
-
-        return $this->responseFactory->html(ob_get_clean());
+        return $this->responseFactory->html($this->templator->render($view, $params));
     }
 }

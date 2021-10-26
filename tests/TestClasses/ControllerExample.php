@@ -9,6 +9,6 @@ class ControllerExample extends Controller
 {
     public function index()
     {
-        return new HtmlResponse('123');
+        return $this->render('view');
     }
 }

@@ -38,7 +38,7 @@ class KernelTest extends TestCase
         $controllerInstance = $this->createMock(Controller::class);
         $controllerInstance->expects(self::once())
             ->method('call')
-            ->with($responseFactory, $method)
+            ->with($method)
             ->willReturn($response);
 
         $controllerFactory = $this->createMock(ControllerFactory::class);

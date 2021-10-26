@@ -28,4 +28,18 @@ class RouterTest extends TestCase
 
         $this->assertEquals($route, $router->getRequestedRoute($request));
     }
+
+    /**
+     * @covers \App\Routing\Router::formRouteList
+     */
+    public function testFormRouteList(): void
+    {
+        $collection = $this->createMock(RoutesCollection::class);
+        $collection->expects(self::once())
+            ->method('push');
+
+        $router = new Router($collection);
+
+        $router->formRouteList();
+    }
 }

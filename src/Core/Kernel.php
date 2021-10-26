@@ -32,6 +32,6 @@ class Kernel
 
         $controller = $this->controllerFactory->create($route->getController());
 
-        return $controller->call($this->responseFactory, $route->getControllerMethod());
+        return $controller->call($route->getControllerMethod());
     }
 }
