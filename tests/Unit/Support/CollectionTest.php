@@ -1,14 +1,14 @@
 <?php
 
-namespace tests\Support;
+namespace tests\Unit\Support;
 
-use App\Support\Collection;
+use Coozieki\Support\Collection;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
 {
     /**
-     * @covers \App\Support\Collection::all
+     * @covers \Coozieki\Support\Collection::all
      */
     public function testAll(): void
     {
@@ -19,8 +19,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @covers \App\Support\Collection::push
-     * @covers \App\Support\Collection::all
+     * @covers \Coozieki\Support\Collection::push
+     * @covers \Coozieki\Support\Collection::all
      */
     public function testPush(): void
     {
@@ -50,8 +50,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @covers \App\Support\Collection::fromArray
-     * @covers \App\Support\Collection::all
+     * @covers \Coozieki\Support\Collection::fromArray
+     * @covers \Coozieki\Support\Collection::all
      */
     public function testFromArray(): void
     {

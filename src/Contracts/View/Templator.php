@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\View;
+namespace Coozieki\Contracts\View;
 
 interface Templator
 {

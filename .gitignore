@@ -20,3 +20,4 @@ Homestead.json
 coverage.txt
 app/
 views/
+config/

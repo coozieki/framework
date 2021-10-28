@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Routing;
+namespace Coozieki\Routing;
 
-use App\Contracts\Http\Request;
-use App\Support\Collection;
-use App\Contracts\Routing\Route;
+use Coozieki\Contracts\Http\Request;
+use Coozieki\Support\Collection;
+use Coozieki\Contracts\Routing\Route;
 
 class RoutesCollection extends Collection
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\Routing;
+namespace Coozieki\Contracts\Routing;
 
 interface Route
 {

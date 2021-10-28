@@ -1,24 +1,25 @@
 <?php
 
-namespace tests\Core;
+namespace tests\Unit\Core;
 
-use App\Contracts\Http\Controller;
-use App\Contracts\Http\ControllerFactory;
-use App\Contracts\Http\Request;
-use App\Contracts\Http\Response;
-use App\Contracts\Http\ResponseFactory;
-use App\Contracts\Routing\Router;
-use App\Contracts\Routing\Route;
-use App\Core\Kernel;
-use App\Http\Response\NotFoundResponse;
-use App\Http\Response\ServerErrorResponse;
-use App\Routing\Exceptions\NotFoundException;
+use Coozieki\Contracts\Http\Controller;
+use Coozieki\Contracts\Http\ControllerFactory;
+use Coozieki\Contracts\Http\Request;
+use Coozieki\Contracts\Http\Response;
+use Coozieki\Contracts\Http\ResponseFactory;
+use Coozieki\Contracts\Routing\Router;
+use Coozieki\Contracts\Routing\Route;
+use Coozieki\Core\CoreConfiguration;
+use Coozieki\Core\Kernel;
+use Coozieki\Http\Response\NotFoundResponse;
+use Coozieki\Http\Response\ServerErrorResponse;
+use Coozieki\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
 {
     /**
-     * @covers \App\Core\Kernel::handle
+     * @covers \Coozieki\Core\Kernel::handle
      */
     public function testHandleWhenRouteNotFound(): void
     {
@@ -50,13 +51,17 @@ class KernelTest extends TestCase
             ->method('notFound')
             ->willReturn($response);
 
-        $kernel = new Kernel($router, $controllerFactory, $responseFactory);
+        $configuration = $this->createMock(CoreConfiguration::class);
+        $configuration->expects(self::once())
+            ->method('setUp');
+
+        $kernel = new Kernel($router, $controllerFactory, $responseFactory, $configuration);
 
         $this->assertEquals($response, $kernel->handle($request));
     }
 
     /**
-     * @covers \App\Core\Kernel::handle
+     * @covers \Coozieki\Core\Kernel::handle
      */
     public function testHandleWhenRouteFound(): void
     {
@@ -94,13 +99,17 @@ class KernelTest extends TestCase
             ->with($request)
             ->willReturn($route);
 
-        $kernel = new Kernel($router, $controllerFactory, $this->createMock(ResponseFactory::class));
+        $configuration = $this->createMock(CoreConfiguration::class);
+        $configuration->expects(self::once())
+            ->method('setUp');
+
+        $kernel = new Kernel($router, $controllerFactory, $this->createMock(ResponseFactory::class), $configuration);
 
         $this->assertEquals($response, $kernel->handle($request));
     }
 
     /**
-     * @covers \App\Core\Kernel::handle
+     * @covers \Coozieki\Core\Kernel::handle
      */
     public function testHandleWhenThrowsServerError(): void
     {
@@ -116,7 +125,11 @@ class KernelTest extends TestCase
             ->method('serverError')
             ->willReturn($response);
 
-        $kernel = new Kernel($router, $this->createMock(ControllerFactory::class), $responseFactory);
+        $configuration = $this->createMock(CoreConfiguration::class);
+        $configuration->expects(self::once())
+            ->method('setUp');
+
+        $kernel = new Kernel($router, $this->createMock(ControllerFactory::class), $responseFactory, $configuration);
 
         $this->assertEquals($response, $kernel->handle($this->createMock(Request::class)));
     }

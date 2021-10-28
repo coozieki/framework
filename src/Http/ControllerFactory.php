@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http;
+namespace Coozieki\Http;
 
-use App\Contracts\Http\Controller;
-use App\Contracts\Http\ControllerFactory as ControllerFactoryInterface;
-use App\Contracts\Http\ResponseFactory as ResponseFactoryInterface;
-use App\Contracts\View\Templator;
-use App\Core\App;
+use Coozieki\Contracts\Http\Controller;
+use Coozieki\Contracts\Http\ControllerFactory as ControllerFactoryInterface;
+use Coozieki\Contracts\Http\ResponseFactory as ResponseFactoryInterface;
+use Coozieki\Contracts\View\Templator;
+use Coozieki\Core\App;
 
 class ControllerFactory implements ControllerFactoryInterface
 {
@@ -23,7 +23,7 @@ class ControllerFactory implements ControllerFactoryInterface
     {
         $controllerInstance = $this->app->make($controller);
 
-        if ($controllerInstance instanceof \App\Http\Controller) {
+        if ($controllerInstance instanceof \Coozieki\Http\Controller) {
             $controllerInstance->setResponseFactory($this->app->make(ResponseFactoryInterface::class));
             $controllerInstance->setTemplator($this->app->make(Templator::class));
         }

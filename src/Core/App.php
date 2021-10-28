@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Core;
+namespace Coozieki\Core;
 
-use App\Contracts\Container\Container;
+use Coozieki\Contracts\Container\Container;
+use Coozieki\Contracts\View\Templator;
+use Coozieki\Exceptions\ConfigurationException;
 
 class App
 {
@@ -32,5 +34,16 @@ class App
     public function singleton(string $class, object $binding): void
     {
         $this->container->singleton($class, $binding);
+    }
+
+    /**
+     * @throws ConfigurationException
+     */
+    public function setTemplatorClass(string $templator): void
+    {
+        if (!is_subclass_of($templator, Templator::class)) {
+            throw new ConfigurationException('Custom Templator class must be instance of ' . Templator::class);
+        }
+        $this->container->register(Templator::class, $templator);
     }
 }

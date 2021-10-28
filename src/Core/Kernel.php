@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Core;
+namespace Coozieki\Core;
 
-use App\Contracts\Http\ControllerFactory;
-use App\Contracts\Http\Request;
-use App\Contracts\Http\Response;
-use App\Contracts\Http\ResponseFactory;
-use App\Contracts\Routing\Router;
-use App\Routing\Exceptions\NotFoundException;
+use Coozieki\Contracts\Config\Configuration;
+use Coozieki\Contracts\Http\ControllerFactory;
+use Coozieki\Contracts\Http\Request;
+use Coozieki\Contracts\Http\Response;
+use Coozieki\Contracts\Http\ResponseFactory;
+use Coozieki\Contracts\Routing\Router;
+use Coozieki\Routing\Exceptions\NotFoundException;
 
 class Kernel
 {
@@ -17,17 +18,21 @@ class Kernel
      * @param Router $router
      * @param ControllerFactory $controllerFactory
      * @param ResponseFactory $responseFactory
+     * @param CoreConfiguration $configuration
      */
     public function __construct(
         private Router $router,
         private ControllerFactory $controllerFactory,
-        private ResponseFactory $responseFactory
+        private ResponseFactory $responseFactory,
+        private CoreConfiguration $configuration
     ) {
     }
 
     public function handle(Request $request): Response
     {
         try {
+            $this->configuration->setUp();
+
             $this->router->formRouteList();
 
             $route = $this->router->getRequestedRoute($request);
@@ -37,7 +42,7 @@ class Kernel
             return $controller->call($route->getControllerMethod());
         } catch (NotFoundException) {
             return $this->responseFactory->notFound();
-        } catch (\Exception) {
+        } catch (\Exception $exception) {
             return $this->responseFactory->serverError();
         }
     }

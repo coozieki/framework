@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\TestClasses;
+namespace tests\Unit\TestClasses;
 
 /**
  * @codeCoverageIgnore

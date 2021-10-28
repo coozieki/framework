@@ -1,18 +1,18 @@
 <?php
 
-namespace tests\Http;
+namespace tests\Unit\Http;
 
-use App\Exceptions\NotImplementedException;
-use App\Http\Response\HtmlResponse;
-use App\Http\Response\NotFoundResponse;
-use App\Http\Response\ServerErrorResponse;
-use App\Http\ResponseFactory;
+use Coozieki\Exceptions\NotImplementedException;
+use Coozieki\Http\Response\HtmlResponse;
+use Coozieki\Http\Response\NotFoundResponse;
+use Coozieki\Http\Response\ServerErrorResponse;
+use Coozieki\Http\ResponseFactory;
 use PHPUnit\Framework\TestCase;
 
 class ResponseFactoryTest extends TestCase
 {
     /**
-     * @covers \App\Http\ResponseFactory::html
+     * @covers \Coozieki\Http\ResponseFactory::html
      */
     public function testHtml(): void
     {
@@ -23,7 +23,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\ResponseFactory::redirect
+     * @covers \Coozieki\Http\ResponseFactory::redirect
      */
     public function testRedirect(): void
     {
@@ -35,7 +35,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\ResponseFactory::notFound
+     * @covers \Coozieki\Http\ResponseFactory::notFound
      */
     public function testNotFound(): void
     {
@@ -45,7 +45,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\ResponseFactory::serverError
+     * @covers \Coozieki\Http\ResponseFactory::serverError
      */
     public function testServerError(): void
     {

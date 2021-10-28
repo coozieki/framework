@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Response;
+namespace Coozieki\Http\Response;
 
-use App\Contracts\Http\Response;
+use Coozieki\Contracts\Http\Response;
 
 /**
  * @codeCoverageIgnore

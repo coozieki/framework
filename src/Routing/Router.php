@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Routing;
+namespace Coozieki\Routing;
 
-use App\Contracts\Http\Request;
-use App\Contracts\Routing\Route;
-use App\Contracts\Routing\Router as RouterInterface;
-use App\Routing\Exceptions\NotFoundException;
+use Coozieki\Contracts\Http\Request;
+use Coozieki\Contracts\Routing\Route;
+use Coozieki\Contracts\Routing\Router as RouterInterface;
+use Coozieki\Routing\Exceptions\NotFoundException;
 use proj\MyController;
 
 class Router implements RouterInterface
@@ -35,8 +35,8 @@ class Router implements RouterInterface
     //TODO: implement method
     public function formRouteList(): void
     {
-        $this->collection->push(new \App\Routing\Route('/index', MyController::class, 'index', 'GET'));
-        $this->collection->push(new \App\Routing\Route('/post', MyController::class, 'post', 'POST'));
+        $this->collection->push(new \Coozieki\Routing\Route('/index', MyController::class, 'index', 'GET'));
+        $this->collection->push(new \Coozieki\Routing\Route('/post', MyController::class, 'post', 'POST'));
     }
 
     public function getRoutes(): array

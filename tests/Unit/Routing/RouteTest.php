@@ -1,14 +1,14 @@
 <?php
 
-namespace tests\Routing;
+namespace tests\Unit\Routing;
 
-use App\Routing\Route;
+use Coozieki\Routing\Route;
 use PHPUnit\Framework\TestCase;
 
 class RouteTest extends TestCase
 {
     /**
-     * @covers \App\Routing\Route::getName
+     * @covers \Coozieki\Routing\Route::getName
      */
     public function testGetNameWhenItIsNotInitialized(): void
     {
@@ -18,7 +18,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::getHttpMethod
+     * @covers \Coozieki\Routing\Route::getHttpMethod
      */
     public function testGetHttpMethod(): void
     {
@@ -29,7 +29,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::getController
+     * @covers \Coozieki\Routing\Route::getController
      */
     public function testGetController(): void
     {
@@ -40,7 +40,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::getControllerMethod
+     * @covers \Coozieki\Routing\Route::getControllerMethod
      */
     public function testGetControllerMethod(): void
     {
@@ -51,7 +51,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::getUri
+     * @covers \Coozieki\Routing\Route::getUri
      */
     public function testGetUri(): void
     {
@@ -62,7 +62,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::get
+     * @covers \Coozieki\Routing\Route::get
      */
     public function testGet(): void
     {
@@ -77,8 +77,8 @@ class RouteTest extends TestCase
     }
 
     /**
-     * @covers \App\Routing\Route::name
-     * @covers \App\Routing\Route::getName
+     * @covers \Coozieki\Routing\Route::name
+     * @covers \Coozieki\Routing\Route::getName
      */
     public function testName(): void
     {

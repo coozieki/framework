@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\Http;
+namespace Coozieki\Contracts\Http;
 
 interface ResponseFactory
 {

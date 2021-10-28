@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Coozieki\\": "src/",
+            "tests\\": "tests/"
         }
     },
     "scripts": {

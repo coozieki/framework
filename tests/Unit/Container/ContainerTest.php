@@ -1,22 +1,22 @@
 <?php
 
-namespace tests\Container;
+namespace tests\Unit\Container;
 
 require_once __DIR__ . "/../TestClasses/ParentClass.php";
 require_once __DIR__ . "/../TestClasses/ChildClass.php";
 
-use App\Container\Container;
+use Coozieki\Container\Container;
 use Container\Container as PackageContainer;
 use Container\UnresolvableBindingException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
-use tests\TestClasses\ChildClass;
-use tests\TestClasses\ParentClass;
+use tests\Unit\TestClasses\ChildClass;
+use tests\Unit\TestClasses\ParentClass;
 
 class ContainerTest extends TestCase
 {
     /**
-     * @covers \App\Container\Container::singleton
+     * @covers \Coozieki\Container\Container::singleton
      *
      * @throws UnresolvableBindingException
      */
@@ -37,7 +37,7 @@ class ContainerTest extends TestCase
     }
 
     /**
-     * @covers \App\Container\Container::register
+     * @covers \Coozieki\Container\Container::register
      */
     public function testRegister(): void
     {
@@ -56,7 +56,7 @@ class ContainerTest extends TestCase
     }
 
     /**
-     * @covers \App\Container\Container::resolve
+     * @covers \Coozieki\Container\Container::resolve
      *
      * @throws UnresolvableBindingException|ReflectionException
      */

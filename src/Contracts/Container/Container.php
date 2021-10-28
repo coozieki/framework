@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\Container;
+namespace Coozieki\Contracts\Container;
 
 interface Container
 {

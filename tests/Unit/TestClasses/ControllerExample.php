@@ -1,10 +1,10 @@
 <?php
 
-namespace tests\TestClasses;
+namespace tests\Unit\TestClasses;
 
-use App\Contracts\Http\Response;
-use App\Exceptions\ConfigurationException;
-use App\Http\Controller;
+use Coozieki\Contracts\Http\Response;
+use Coozieki\Exceptions\ConfigurationException;
+use Coozieki\Http\Controller;
 
 class ControllerExample extends Controller
 {

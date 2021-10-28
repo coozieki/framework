@@ -1,21 +1,21 @@
 <?php
 
-namespace tests\Http;
+namespace tests\Unit\Http;
 
 require_once __DIR__ . '/../TestClasses/ControllerExample.php';
 
-use App\Contracts\Http\ResponseFactory;
-use App\Contracts\View\Templator;
-use App\Exceptions\ConfigurationException;
-use App\Exceptions\MethodNotFoundException;
-use App\Http\Controller;
+use Coozieki\Contracts\Http\ResponseFactory;
+use Coozieki\Contracts\View\Templator;
+use Coozieki\Exceptions\ConfigurationException;
+use Coozieki\Exceptions\MethodNotFoundException;
+use Coozieki\Http\Controller;
 use PHPUnit\Framework\TestCase;
-use tests\TestClasses\ControllerExample;
+use tests\Unit\TestClasses\ControllerExample;
 
 class ControllerTest extends TestCase
 {
     /**
-     * @covers \App\Http\Controller::call
+     * @covers \Coozieki\Http\Controller::call
      *
      * @throws MethodNotFoundException
      */
@@ -32,10 +32,10 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controller::call
-     * @covers \App\Http\Controller::render
-     * @covers \App\Http\Controller::setTemplator
-     * @covers \App\Http\Controller::setResponseFactory
+     * @covers \Coozieki\Http\Controller::call
+     * @covers \Coozieki\Http\Controller::render
+     * @covers \Coozieki\Http\Controller::setTemplator
+     * @covers \Coozieki\Http\Controller::setResponseFactory
      *
      * @throws MethodNotFoundException
      */
@@ -51,9 +51,9 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controller::setTemplator
-     * @covers \App\Http\Controller::call
-     * @covers \App\Http\Controller::render
+     * @covers \Coozieki\Http\Controller::setTemplator
+     * @covers \Coozieki\Http\Controller::call
+     * @covers \Coozieki\Http\Controller::render
      *
      * @throws MethodNotFoundException
      */
@@ -69,9 +69,9 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controller::setResponseFactory
-     * @covers \App\Http\Controller::call
-     * @covers \App\Http\Controller::render
+     * @covers \Coozieki\Http\Controller::setResponseFactory
+     * @covers \Coozieki\Http\Controller::call
+     * @covers \Coozieki\Http\Controller::render
      *
      * @throws MethodNotFoundException
      */
@@ -87,7 +87,7 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controller::setTemplator
+     * @covers \Coozieki\Http\Controller::setTemplator
      */
     public function testSetTemplator(): void
     {
@@ -106,7 +106,7 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controller::setResponseFactory
+     * @covers \Coozieki\Http\Controller::setResponseFactory
      */
     public function testSetResponseFactory(): void
     {

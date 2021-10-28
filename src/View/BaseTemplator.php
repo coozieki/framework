@@ -1,8 +1,8 @@
 <?php
 
-namespace App\View;
+namespace Coozieki\View;
 
-use App\Contracts\View\Templator;
+use Coozieki\Contracts\View\Templator;
 
 class BaseTemplator implements Templator
 {
@@ -14,8 +14,13 @@ class BaseTemplator implements Templator
         extract($params, EXTR_OVERWRITE);
 
         ob_start();
-        include $this->viewsPath . '/' . $file . '.php';
+        include $this->getFullPath($file);
 
         return ob_get_clean();
+    }
+
+    protected function getFullPath(string $file): string
+    {
+        return $this->viewsPath . '/' . $file . '.php';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Routing\Exceptions;
+namespace Coozieki\Routing\Exceptions;
 
 class NotFoundException extends \Exception
 {

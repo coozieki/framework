@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Routing;
+namespace Coozieki\Routing;
 
-use App\Contracts\Routing\Route as RouteInterface;
+use Coozieki\Contracts\Routing\Route as RouteInterface;
 
 class Route implements RouteInterface
 {

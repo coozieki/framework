@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http;
+namespace Coozieki\Http;
 
-use App\Contracts\Http\Response;
-use App\Contracts\Http\ResponseFactory as ResponseFactoryInterface;
-use App\Exceptions\NotImplementedException;
-use App\Http\Response\HtmlResponse;
-use App\Http\Response\NotFoundResponse;
-use App\Http\Response\ServerErrorResponse;
+use Coozieki\Contracts\Http\Response;
+use Coozieki\Contracts\Http\ResponseFactory as ResponseFactoryInterface;
+use Coozieki\Exceptions\NotImplementedException;
+use Coozieki\Http\Response\HtmlResponse;
+use Coozieki\Http\Response\NotFoundResponse;
+use Coozieki\Http\Response\ServerErrorResponse;
 
 class ResponseFactory implements ResponseFactoryInterface
 {
