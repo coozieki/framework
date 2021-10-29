@@ -4,10 +4,10 @@ namespace tests\Unit\Core;
 
 require_once __DIR__ . '/../TestClasses/TemplatorExample.php';
 
-use Coozieki\Contracts\View\Templator;
-use Coozieki\Core\App;
-use Coozieki\Contracts\Container\Container;
-use Coozieki\Exceptions\ConfigurationException;
+use Coozieki\Framework\Contracts\View\Templator;
+use Coozieki\Framework\Core\App;
+use Coozieki\Framework\Contracts\Container\Container;
+use Coozieki\Framework\Exceptions\ConfigurationException;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use tests\Unit\TestClasses\TemplatorExample;
@@ -15,7 +15,7 @@ use tests\Unit\TestClasses\TemplatorExample;
 class AppTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Core\App::make
+     * @covers \Coozieki\Framework\Core\App::make
      */
     public function testMake(): void
     {
@@ -34,7 +34,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\App::bind
+     * @covers \Coozieki\Framework\Core\App::bind
      */
     public function testBind(): void
     {
@@ -52,7 +52,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\App::singleton
+     * @covers \Coozieki\Framework\Core\App::singleton
      */
     public function testSingleton(): void
     {
@@ -70,7 +70,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\App::setTemplatorClass
+     * @covers \Coozieki\Framework\Core\App::setTemplatorClass
      * @throws ConfigurationException
      */
     public function testSetTemplatorClassIfInstanceOfTemplator(): void
@@ -88,7 +88,7 @@ class AppTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\App::setTemplatorClass
+     * @covers \Coozieki\Framework\Core\App::setTemplatorClass
      * @throws ConfigurationException
      */
     public function testSetTemplatorClassIfNotInstanceOfTemplator(): void

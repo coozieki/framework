@@ -1,13 +1,13 @@
 <?php
 
-namespace Coozieki\Http;
+namespace Coozieki\Framework\Http;
 
-use Coozieki\Contracts\Http\Controller as ControllerInterface;
-use Coozieki\Contracts\Http\Response;
-use Coozieki\Contracts\Http\ResponseFactory;
-use Coozieki\Contracts\View\Templator;
-use Coozieki\Exceptions\ConfigurationException;
-use Coozieki\Exceptions\MethodNotFoundException;
+use Coozieki\Framework\Contracts\Http\Controller as ControllerInterface;
+use Coozieki\Framework\Contracts\Http\Response;
+use Coozieki\Framework\Contracts\Http\ResponseFactory;
+use Coozieki\Framework\Contracts\View\Templator;
+use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Exceptions\MethodNotFoundException;
 
 class Controller implements ControllerInterface
 {

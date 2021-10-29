@@ -1,6 +1,6 @@
 <?php
 
-namespace Coozieki\Support;
+namespace Coozieki\Framework\Support;
 
 class Collection
 {

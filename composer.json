@@ -19,8 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Coozieki\\": "src/",
-            "tests\\": "tests/"
+            "Coozieki\\Framework\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/",
+            "proj\\": "app/"
         }
     },
     "scripts": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Coozieki\Contracts\Config;
+namespace Coozieki\Framework\Contracts\Config;
 
 interface Configuration
 {

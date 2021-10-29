@@ -2,11 +2,11 @@
 
 namespace tests\Unit\Http;
 
-use Coozieki\Contracts\Http\Controller;
-use Coozieki\Contracts\Http\ResponseFactory;
-use Coozieki\Contracts\View\Templator;
-use Coozieki\Core\App;
-use Coozieki\Http\ControllerFactory;
+use Coozieki\Framework\Contracts\Http\Controller;
+use Coozieki\Framework\Contracts\Http\ResponseFactory;
+use Coozieki\Framework\Contracts\View\Templator;
+use Coozieki\Framework\Core\App;
+use Coozieki\Framework\Http\ControllerFactory;
 use PHPUnit\Framework\TestCase;
 
 class ControllerFactoryTest extends TestCase
@@ -14,7 +14,7 @@ class ControllerFactoryTest extends TestCase
     /**
      * @dataProvider controllerDataProvider
      *
-     * @covers \Coozieki\Http\ControllerFactory::create
+     * @covers \Coozieki\Framework\Http\ControllerFactory::create
      */
     public function testCreateWhenControllerExists(string $controller): void
     {
@@ -22,7 +22,7 @@ class ControllerFactoryTest extends TestCase
 
         $app = $this->createMock(App::class);
 
-        if (is_subclass_of($controllerInstance, \Coozieki\Http\Controller::class)) {
+        if (is_subclass_of($controllerInstance, \Coozieki\Framework\Http\Controller::class)) {
             $templator = $this->createMock(Templator::class);
             $responseFactory = $this->createMock(ResponseFactory::class);
 
@@ -53,7 +53,7 @@ class ControllerFactoryTest extends TestCase
     {
         return [
             [Controller::class],
-            [\Coozieki\Http\Controller::class]
+            [\Coozieki\Framework\Http\Controller::class]
         ];
     }
 }

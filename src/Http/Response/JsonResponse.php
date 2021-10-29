@@ -1,8 +1,8 @@
 <?php
 
-namespace Coozieki\Http\Response;
+namespace Coozieki\Framework\Http\Response;
 
-use Coozieki\Contracts\Http\Response;
+use Coozieki\Framework\Contracts\Http\Response;
 use JsonException;
 
 /**

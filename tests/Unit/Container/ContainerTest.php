@@ -5,7 +5,7 @@ namespace tests\Unit\Container;
 require_once __DIR__ . "/../TestClasses/ParentClass.php";
 require_once __DIR__ . "/../TestClasses/ChildClass.php";
 
-use Coozieki\Container\Container;
+use Coozieki\Framework\Container\Container;
 use Container\Container as PackageContainer;
 use Container\UnresolvableBindingException;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ use tests\Unit\TestClasses\ParentClass;
 class ContainerTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Container\Container::singleton
+     * @covers \Coozieki\Framework\Container\Container::singleton
      *
      * @throws UnresolvableBindingException
      */
@@ -37,7 +37,7 @@ class ContainerTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Container\Container::register
+     * @covers \Coozieki\Framework\Container\Container::register
      */
     public function testRegister(): void
     {
@@ -56,7 +56,7 @@ class ContainerTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Container\Container::resolve
+     * @covers \Coozieki\Framework\Container\Container::resolve
      *
      * @throws UnresolvableBindingException|ReflectionException
      */

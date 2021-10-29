@@ -1,10 +1,10 @@
 <?php
 
-namespace Coozieki\Core;
+namespace Coozieki\Framework\Core;
 
-use Coozieki\Contracts\Container\Container;
-use Coozieki\Contracts\View\Templator;
-use Coozieki\Exceptions\ConfigurationException;
+use Coozieki\Framework\Contracts\Container\Container;
+use Coozieki\Framework\Contracts\View\Templator;
+use Coozieki\Framework\Exceptions\ConfigurationException;
 
 class App
 {

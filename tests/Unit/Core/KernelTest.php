@@ -2,24 +2,24 @@
 
 namespace tests\Unit\Core;
 
-use Coozieki\Contracts\Http\Controller;
-use Coozieki\Contracts\Http\ControllerFactory;
-use Coozieki\Contracts\Http\Request;
-use Coozieki\Contracts\Http\Response;
-use Coozieki\Contracts\Http\ResponseFactory;
-use Coozieki\Contracts\Routing\Router;
-use Coozieki\Contracts\Routing\Route;
-use Coozieki\Core\CoreConfiguration;
-use Coozieki\Core\Kernel;
-use Coozieki\Http\Response\NotFoundResponse;
-use Coozieki\Http\Response\ServerErrorResponse;
-use Coozieki\Routing\Exceptions\NotFoundException;
+use Coozieki\Framework\Contracts\Http\Controller;
+use Coozieki\Framework\Contracts\Http\ControllerFactory;
+use Coozieki\Framework\Contracts\Http\Request;
+use Coozieki\Framework\Contracts\Http\Response;
+use Coozieki\Framework\Contracts\Http\ResponseFactory;
+use Coozieki\Framework\Contracts\Routing\Router;
+use Coozieki\Framework\Contracts\Routing\Route;
+use Coozieki\Framework\Core\CoreConfiguration;
+use Coozieki\Framework\Core\Kernel;
+use Coozieki\Framework\Http\Response\NotFoundResponse;
+use Coozieki\Framework\Http\Response\ServerErrorResponse;
+use Coozieki\Framework\Routing\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Core\Kernel::handle
+     * @covers \Coozieki\Framework\Core\Kernel::handle
      */
     public function testHandleWhenRouteNotFound(): void
     {
@@ -61,7 +61,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\Kernel::handle
+     * @covers \Coozieki\Framework\Core\Kernel::handle
      */
     public function testHandleWhenRouteFound(): void
     {
@@ -109,7 +109,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Core\Kernel::handle
+     * @covers \Coozieki\Framework\Core\Kernel::handle
      */
     public function testHandleWhenThrowsServerError(): void
     {

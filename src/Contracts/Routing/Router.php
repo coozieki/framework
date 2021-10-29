@@ -1,8 +1,8 @@
 <?php
 
-namespace Coozieki\Contracts\Routing;
+namespace Coozieki\Framework\Contracts\Routing;
 
-use Coozieki\Contracts\Http\Request;
+use Coozieki\Framework\Contracts\Http\Request;
 
 interface Router
 {

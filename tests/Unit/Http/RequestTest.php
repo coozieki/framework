@@ -2,13 +2,13 @@
 
 namespace tests\Unit\Http;
 
-use Coozieki\Http\Request;
+use Coozieki\Framework\Http\Request;
 use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Http\Request::getMethod
+     * @covers \Coozieki\Framework\Http\Request::getMethod
      */
     public function testGetMethod(): void
     {
@@ -21,7 +21,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Http\Request::getRequestedUri
+     * @covers \Coozieki\Framework\Http\Request::getRequestedUri
      */
     public function testGetRequestedUri(): void
     {

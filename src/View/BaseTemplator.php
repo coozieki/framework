@@ -1,8 +1,8 @@
 <?php
 
-namespace Coozieki\View;
+namespace Coozieki\Framework\View;
 
-use Coozieki\Contracts\View\Templator;
+use Coozieki\Framework\Contracts\View\Templator;
 
 class BaseTemplator implements Templator
 {

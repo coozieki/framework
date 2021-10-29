@@ -1,6 +1,6 @@
 <?php
 
-namespace Coozieki\Exceptions;
+namespace Coozieki\Framework\Exceptions;
 
 class NotImplementedException extends \Exception
 {

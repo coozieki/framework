@@ -1,9 +1,9 @@
 <?php
 
-namespace Coozieki\Core;
+namespace Coozieki\Framework\Core;
 
-use Coozieki\Config\Configuration;
-use Coozieki\Exceptions\ConfigurationException;
+use Coozieki\Framework\Config\Configuration;
+use Coozieki\Framework\Exceptions\ConfigurationException;
 
 class CoreConfiguration extends Configuration
 {

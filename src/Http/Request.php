@@ -1,8 +1,8 @@
 <?php
 
-namespace Coozieki\Http;
+namespace Coozieki\Framework\Http;
 
-use Coozieki\Contracts\Http\Request as RequestInterface;
+use Coozieki\Framework\Contracts\Http\Request as RequestInterface;
 
 class Request implements RequestInterface
 {

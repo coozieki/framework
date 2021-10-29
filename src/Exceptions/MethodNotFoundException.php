@@ -1,6 +1,6 @@
 <?php
 
-namespace Coozieki\Exceptions;
+namespace Coozieki\Framework\Exceptions;
 
 use Exception;
 

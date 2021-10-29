@@ -17,7 +17,10 @@ Homestead.json
 /.vagrant
 .idea/
 .phpunit.cache/
-coverage.txt
+
+#dev environment
 app/
 views/
 config/
+templates_c/
+coverage.txt

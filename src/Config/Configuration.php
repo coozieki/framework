@@ -1,9 +1,9 @@
 <?php
 
-namespace Coozieki\Config;
+namespace Coozieki\Framework\Config;
 
-use Coozieki\Contracts\Config\Configuration as ConfigurationInterface;
-use Coozieki\Core\App;
+use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
+use Coozieki\Framework\Core\App;
 
 /**
  * @codeCoverageIgnore

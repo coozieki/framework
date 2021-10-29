@@ -2,15 +2,15 @@
 
 namespace tests\Unit\Routing;
 
-use Coozieki\Contracts\Http\Request;
-use Coozieki\Contracts\Routing\Route;
-use Coozieki\Routing\RoutesCollection;
+use Coozieki\Framework\Contracts\Http\Request;
+use Coozieki\Framework\Contracts\Routing\Route;
+use Coozieki\Framework\Routing\RoutesCollection;
 use PHPUnit\Framework\TestCase;
 
 class RoutesCollectionTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Routing\RoutesCollection::findRequestedRoute
+     * @covers \Coozieki\Framework\Routing\RoutesCollection::findRequestedRoute
      */
     public function testFindRequestedRouteWhenFound(): void
     {
@@ -43,7 +43,7 @@ class RoutesCollectionTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Routing\RoutesCollection::findRequestedRoute
+     * @covers \Coozieki\Framework\Routing\RoutesCollection::findRequestedRoute
      */
     public function testFindRequestedRouteWhenNotFound(): void
     {

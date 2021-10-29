@@ -2,17 +2,17 @@
 
 namespace tests\Unit\Http;
 
-use Coozieki\Exceptions\NotImplementedException;
-use Coozieki\Http\Response\HtmlResponse;
-use Coozieki\Http\Response\NotFoundResponse;
-use Coozieki\Http\Response\ServerErrorResponse;
-use Coozieki\Http\ResponseFactory;
+use Coozieki\Framework\Exceptions\NotImplementedException;
+use Coozieki\Framework\Http\Response\HtmlResponse;
+use Coozieki\Framework\Http\Response\NotFoundResponse;
+use Coozieki\Framework\Http\Response\ServerErrorResponse;
+use Coozieki\Framework\Http\ResponseFactory;
 use PHPUnit\Framework\TestCase;
 
 class ResponseFactoryTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Http\ResponseFactory::html
+     * @covers \Coozieki\Framework\Http\ResponseFactory::html
      */
     public function testHtml(): void
     {
@@ -23,7 +23,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Http\ResponseFactory::redirect
+     * @covers \Coozieki\Framework\Http\ResponseFactory::redirect
      */
     public function testRedirect(): void
     {
@@ -35,7 +35,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Http\ResponseFactory::notFound
+     * @covers \Coozieki\Framework\Http\ResponseFactory::notFound
      */
     public function testNotFound(): void
     {
@@ -45,7 +45,7 @@ class ResponseFactoryTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Http\ResponseFactory::serverError
+     * @covers \Coozieki\Framework\Http\ResponseFactory::serverError
      */
     public function testServerError(): void
     {

@@ -2,17 +2,17 @@
 
 namespace tests\Unit\Routing;
 
-use Coozieki\Contracts\Http\Request;
-use Coozieki\Contracts\Routing\Route;
-use Coozieki\Routing\Exceptions\NotFoundException;
-use Coozieki\Routing\Router;
-use Coozieki\Routing\RoutesCollection;
+use Coozieki\Framework\Contracts\Http\Request;
+use Coozieki\Framework\Contracts\Routing\Route;
+use Coozieki\Framework\Routing\Exceptions\NotFoundException;
+use Coozieki\Framework\Routing\Router;
+use Coozieki\Framework\Routing\RoutesCollection;
 use PHPUnit\Framework\TestCase;
 
 class RouterTest extends TestCase
 {
     /**
-     * @covers \Coozieki\Routing\Router::getRequestedRoute
+     * @covers \Coozieki\Framework\Routing\Router::getRequestedRoute
      * @throws NotFoundException
      */
     public function testGetRequestedRouteWhenFound(): void
@@ -32,7 +32,7 @@ class RouterTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Routing\Router::getRequestedRoute
+     * @covers \Coozieki\Framework\Routing\Router::getRequestedRoute
      */
     public function testGetRequestedRouteWhenNotFound(): void
     {
@@ -52,7 +52,7 @@ class RouterTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Routing\Router::formRouteList
+     * @covers \Coozieki\Framework\Routing\Router::formRouteList
      */
     public function testFormRouteList(): void
     {
@@ -66,7 +66,7 @@ class RouterTest extends TestCase
     }
 
     /**
-     * @covers \Coozieki\Routing\Router::getRoutes
+     * @covers \Coozieki\Framework\Routing\Router::getRoutes
      */
     public function testGetRoutes(): void
     {

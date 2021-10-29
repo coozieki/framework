@@ -1,8 +1,8 @@
 <?php
 
-namespace Coozieki\Container;
+namespace Coozieki\Framework\Container;
 
-use Coozieki\Contracts\Container\Container as ContainerInterface;
+use Coozieki\Framework\Contracts\Container\Container as ContainerInterface;
 use Container\Container as PackageContainer;
 use Container\UnresolvableBindingException;
 use ReflectionException;

@@ -2,7 +2,7 @@
 
 namespace tests\Unit\TestClasses;
 
-use Coozieki\Contracts\View\Templator;
+use Coozieki\Framework\Contracts\View\Templator;
 
 class TemplatorExample implements Templator
 {

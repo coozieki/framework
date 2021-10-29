@@ -2,9 +2,9 @@
 
 namespace tests\Unit\TestClasses;
 
-use Coozieki\Contracts\Http\Response;
-use Coozieki\Exceptions\ConfigurationException;
-use Coozieki\Http\Controller;
+use Coozieki\Framework\Contracts\Http\Response;
+use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Http\Controller;
 
 class ControllerExample extends Controller
 {

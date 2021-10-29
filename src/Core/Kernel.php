@@ -1,14 +1,13 @@
 <?php
 
-namespace Coozieki\Core;
+namespace Coozieki\Framework\Core;
 
-use Coozieki\Contracts\Config\Configuration;
-use Coozieki\Contracts\Http\ControllerFactory;
-use Coozieki\Contracts\Http\Request;
-use Coozieki\Contracts\Http\Response;
-use Coozieki\Contracts\Http\ResponseFactory;
-use Coozieki\Contracts\Routing\Router;
-use Coozieki\Routing\Exceptions\NotFoundException;
+use Coozieki\Framework\Contracts\Http\ControllerFactory;
+use Coozieki\Framework\Contracts\Http\Request;
+use Coozieki\Framework\Contracts\Http\Response;
+use Coozieki\Framework\Contracts\Http\ResponseFactory;
+use Coozieki\Framework\Contracts\Routing\Router;
+use Coozieki\Framework\Routing\Exceptions\NotFoundException;
 
 class Kernel
 {

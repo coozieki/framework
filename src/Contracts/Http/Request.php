@@ -1,6 +1,6 @@
 <?php
 
-namespace Coozieki\Contracts\Http;
+namespace Coozieki\Framework\Contracts\Http;
 
 interface Request
 {
