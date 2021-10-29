@@ -3,6 +3,7 @@
 namespace Coozieki\Framework\Core;
 
 use Coozieki\Framework\Config\Configuration;
+use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Exceptions\ConfigurationException;
 use Coozieki\Framework\Support\File;
 
@@ -12,6 +13,12 @@ class CoreConfiguration extends Configuration
 
     private File $file;
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param App $app
+     * @param File $file
+     */
     public function __construct(App $app, File $file)
     {
         $this->file = $file;
@@ -34,8 +41,8 @@ class CoreConfiguration extends Configuration
         foreach ($customConfigurations as $configuration) {
             $configurationInstance = $this->app->make($configuration);
 
-            if (!$configurationInstance instanceof Configuration) {
-                throw new ConfigurationException('Custom configuration class must be instance of ' . Configuration::class . '.');
+            if (!$configurationInstance instanceof ConfigurationInterface) {
+                throw new ConfigurationException('Custom configuration class must be instance of ' . ConfigurationInterface::class . '.');
             }
 
             $configurationInstance->setUp();
