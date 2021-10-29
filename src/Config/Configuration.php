@@ -10,7 +10,7 @@ use Coozieki\Framework\Core\App;
  */
 abstract class Configuration implements ConfigurationInterface
 {
-    final public function __construct(protected App $app)
+    public function __construct(protected App $app)
     {
 
     }

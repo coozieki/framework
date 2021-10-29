@@ -15,7 +15,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~9.5",
-        "sempro/phpunit-pretty-print": "dev-develop"
+        "sempro/phpunit-pretty-print": "dev-develop",
+        "twig/twig": "^3.0"
     },
     "autoload": {
         "psr-4": {
