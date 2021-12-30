@@ -1,5 +1,6 @@
 {
     "name": "coozieki/framework",
+    "version": "0.1.0",
     "description": "Practice project to replicate PHP frameworks functionality",
     "license": "MIT",
     "authors": [
@@ -8,7 +9,7 @@
             "email": "vadimvor.work@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "~8.0",
         "coozieki/ioc-container": "dev-main"
