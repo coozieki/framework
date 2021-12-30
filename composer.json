@@ -21,7 +21,10 @@
     "autoload": {
         "psr-4": {
             "Coozieki\\Framework\\": "src/"
-        }
+        },
+        "files": [
+            "src/bootstrap.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
