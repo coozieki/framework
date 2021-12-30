@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95bcc38c5e1ff9086c2be053ff8d0247",
+    "content-hash": "2bb3aa014e22d171e275628c9ef7206b",
     "packages": [
         {
             "name": "coozieki/ioc-container",
-            "version": "dev-main",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/coozieki/ioc-container.git",
-                "reference": "00420dd44c59b56f752aaca6d3f873235ffa1a99"
+                "reference": "18b82dc37665752077929f1d9a8a8f37295ef049"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coozieki/ioc-container/zipball/00420dd44c59b56f752aaca6d3f873235ffa1a99",
-                "reference": "00420dd44c59b56f752aaca6d3f873235ffa1a99",
+                "url": "https://api.github.com/repos/coozieki/ioc-container/zipball/18b82dc37665752077929f1d9a8a8f37295ef049",
+                "reference": "18b82dc37665752077929f1d9a8a8f37295ef049",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,6 @@
             "require-dev": {
                 "phpunit/phpunit": "~9.5.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -45,9 +44,9 @@
             ],
             "support": {
                 "issues": "https://github.com/coozieki/ioc-container/issues",
-                "source": "https://github.com/coozieki/ioc-container/tree/main"
+                "source": "https://github.com/coozieki/ioc-container/tree/0.1.0"
             },
-            "time": "2021-10-24T16:23:37+00:00"
+            "time": "2021-12-30T22:38:16+00:00"
         }
     ],
     "packages-dev": [
@@ -2343,7 +2342,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "coozieki/ioc-container": 20,
         "sempro/phpunit-pretty-print": 20
     },
     "prefer-stable": false,
