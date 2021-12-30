@@ -22,5 +22,6 @@ Homestead.json
 app/
 views/
 config/
+routes/
 templates_c/
 coverage.txt

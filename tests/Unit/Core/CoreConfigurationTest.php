@@ -6,6 +6,7 @@ use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Core\App;
 use Coozieki\Framework\Core\CoreConfiguration;
 use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Routing\Router;
 use Coozieki\Framework\Support\File;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -35,11 +36,24 @@ class CoreConfigurationTest extends TestCase
         $customConfiguration->expects(self::exactly(2))
             ->method('setUp');
 
+        $router = $this->createMock(Router::class);
+        $router->expects(self::once())
+            ->method('configure')
+            ->with($configurations);
+
         $app = $this->createMock(App::class);
-        $app->expects(self::exactly(2))
+        $app->expects(self::exactly(3))
             ->method('make')
-            ->with(ConfigurationExample::class)
-            ->willReturn($customConfiguration);
+            ->withConsecutive(
+                [ConfigurationExample::class],
+                [ConfigurationExample::class],
+                [Router::class]
+            )
+            ->willReturn(
+                $customConfiguration,
+                $customConfiguration,
+                $router
+            );
 
         $configuration = new CoreConfiguration($app, $file);
 

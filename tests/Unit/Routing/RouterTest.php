@@ -7,6 +7,7 @@ use Coozieki\Framework\Contracts\Routing\Route;
 use Coozieki\Framework\Routing\Exceptions\NotFoundException;
 use Coozieki\Framework\Routing\Router;
 use Coozieki\Framework\Routing\RoutesCollection;
+use Coozieki\Framework\Support\File;
 use PHPUnit\Framework\TestCase;
 
 class RouterTest extends TestCase
@@ -26,7 +27,9 @@ class RouterTest extends TestCase
             ->with($request)
             ->willReturn($route);
 
-        $router = new Router($collection);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
 
         $this->assertEquals($route, $router->getRequestedRoute($request));
     }
@@ -46,7 +49,9 @@ class RouterTest extends TestCase
             ->with($request)
             ->willReturn(null);
 
-        $router = new Router($collection);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
 
         $router->getRequestedRoute($request);
     }
@@ -56,11 +61,48 @@ class RouterTest extends TestCase
      */
     public function testFormRouteList(): void
     {
+        $route1 = $this->createMock(Route::class);
+        $route2 = $this->createMock(Route::class);
+
         $collection = $this->createMock(RoutesCollection::class);
         $collection->expects(self::exactly(2))
-            ->method('push');
+            ->method('push')
+            ->withConsecutive([$route1], [$route2]);
 
-        $router = new Router($collection);
+        $file = $this->createMock(File::class);
+        $file->expects(self::once())
+            ->method('requireAsArray')
+            ->with(Router::DEFAULT_ROUTES_PATH)
+            ->willReturn([$route1, $route2]);
+
+        $router = new Router($collection, $file);
+
+        $router->formRouteList();
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Routing\Router::formRouteList
+     */
+    public function testFormRouteListWithSettingRoutesPath(): void
+    {
+        $path = 'somepath/file.php';
+        $route1 = $this->createMock(Route::class);
+        $route2 = $this->createMock(Route::class);
+
+        $collection = $this->createMock(RoutesCollection::class);
+        $collection->expects(self::exactly(2))
+            ->method('push')
+            ->withConsecutive([$route1], [$route2]);
+
+        $file = $this->createMock(File::class);
+        $file->expects(self::once())
+            ->method('requireAsArray')
+            ->with($path)
+            ->willReturn([$route1, $route2]);
+
+        $router = new Router($collection, $file);
+
+        $router->setRoutesPath($path);
 
         $router->formRouteList();
     }
@@ -77,8 +119,59 @@ class RouterTest extends TestCase
             ->method('all')
             ->willReturn($routes);
 
-        $router = new Router($collection);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
 
         $this->assertEquals($routes, $router->getRoutes());
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Routing\Router::setRoutesPath
+     * @covers \Coozieki\Framework\Routing\Router::getRoutesPath
+     */
+    public function testSetGetRoutesPath(): void
+    {
+        $path = 'routes2/web.php';
+        $collection = $this->createMock(RoutesCollection::class);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
+
+        $router->setRoutesPath($path);
+        $this->assertEquals($path, $router->getRoutesPath());
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Routing\Router::configure
+     */
+    public function testConfigureWhenRoutesPathConfigured(): void
+    {
+        $path = 'path/to/routes';
+        $configs = ['routesPath' => $path];
+        $collection = $this->createMock(RoutesCollection::class);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
+
+        $router->configure($configs);
+
+        $this->assertEquals($path, $router->getRoutesPath());
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Routing\Router::configure
+     */
+    public function testConfigureWhenEmptyConfig(): void
+    {
+        $configs = [];
+        $collection = $this->createMock(RoutesCollection::class);
+        $file = $this->createMock(File::class);
+
+        $router = new Router($collection, $file);
+
+        $router->configure($configs);
+
+        $this->assertEquals(Router::DEFAULT_ROUTES_PATH, $router->getRoutesPath());
     }
 }

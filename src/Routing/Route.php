@@ -3,6 +3,7 @@
 namespace Coozieki\Framework\Routing;
 
 use Coozieki\Framework\Contracts\Routing\Route as RouteInterface;
+use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 class Route implements RouteInterface
 {
@@ -24,7 +25,7 @@ class Route implements RouteInterface
     /**
      * @var string|null
      */
-    private $name;
+    private ?string $name;
 
     public static function get(string $uri, array $controllerParams): static
     {
@@ -33,7 +34,7 @@ class Route implements RouteInterface
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this->name ?? null;
     }
 
     public function getHttpMethod(): string

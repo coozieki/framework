@@ -6,17 +6,29 @@ use Coozieki\Framework\Contracts\Http\Request;
 use Coozieki\Framework\Contracts\Routing\Route;
 use Coozieki\Framework\Contracts\Routing\Router as RouterInterface;
 use Coozieki\Framework\Routing\Exceptions\NotFoundException;
-use proj\MyController;
+use Coozieki\Framework\Support\File;
 
 class Router implements RouterInterface
 {
+    public const DEFAULT_ROUTES_PATH = 'routes/web.php';
+
+    private string $routesPath = self::DEFAULT_ROUTES_PATH;
+
     /**
      * @codeCoverageIgnore
      *
      * @param RoutesCollection $collection
+     * @param File $file
      */
-    public function __construct(private RoutesCollection $collection)
+    public function __construct(private RoutesCollection $collection, private File $file)
     {
+    }
+
+    public function configure(array $config): void
+    {
+        if (isset($config['routesPath'])) {
+            $this->setRoutesPath($config['routesPath']);
+        }
     }
 
     /**
@@ -32,15 +44,29 @@ class Router implements RouterInterface
         return $route;
     }
 
-    //TODO: implement method
     public function formRouteList(): void
     {
-        $this->collection->push(new \Coozieki\Framework\Routing\Route('/index', MyController::class, 'index', 'GET'));
-        $this->collection->push(new \Coozieki\Framework\Routing\Route('/post', MyController::class, 'post', 'POST'));
+        $routes = $this->file->requireAsArray($this->routesPath);
+        foreach ($routes as $route) {
+            $this->collection->push($route);
+        }
     }
 
+    /**
+     * @return Route[]
+     */
     public function getRoutes(): array
     {
         return $this->collection->all();
+    }
+    
+    public function setRoutesPath(string $path): void
+    {
+        $this->routesPath = $path;
+    }
+
+    public function getRoutesPath(): string
+    {
+        return $this->routesPath;
     }
 }

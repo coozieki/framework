@@ -5,6 +5,7 @@ namespace Coozieki\Framework\Core;
 use Coozieki\Framework\Config\Configuration;
 use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Routing\Router;
 use Coozieki\Framework\Support\File;
 
 class CoreConfiguration extends Configuration
@@ -47,5 +48,7 @@ class CoreConfiguration extends Configuration
 
             $configurationInstance->setUp();
         }
+
+        $this->app->make(Router::class)->configure($appConfig);
     }
 }
