@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bb3aa014e22d171e275628c9ef7206b",
+    "content-hash": "a0b3c806f56bcf5dd0a7fed8fda9120f",
     "packages": [
         {
             "name": "coozieki/ioc-container",

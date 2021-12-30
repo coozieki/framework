@@ -100,4 +100,14 @@ class AppTest extends TestCase
 
         $app->setTemplatorClass(Exception::class);
     }
+
+    /**
+     * @covers App
+     */
+    public function testInstance(): void
+    {
+        $app = new App($this->createMock(Container::class));
+
+        $this->assertSame(App::$instance, $app);
+    }
 }

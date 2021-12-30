@@ -8,6 +8,8 @@ use Coozieki\Framework\Exceptions\ConfigurationException;
 
 class App
 {
+    public static self $instance;
+
     /**
      * @codeCoverageIgnore
      *
@@ -15,6 +17,7 @@ class App
      */
     public function __construct(private Container $container)
     {
+        self::$instance = $this;
     }
 
     /**
