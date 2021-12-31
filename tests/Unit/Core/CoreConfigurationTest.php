@@ -6,9 +6,9 @@ use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Core\App;
 use Coozieki\Framework\Core\CoreConfiguration;
 use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Exceptions\FileNotFoundException;
 use Coozieki\Framework\Routing\Router;
 use Coozieki\Framework\Support\File;
-use Exception;
 use PHPUnit\Framework\TestCase;
 use tests\Unit\TestClasses\ChildClass;
 use tests\Unit\TestClasses\ConfigurationExample;
@@ -118,6 +118,61 @@ class CoreConfigurationTest extends TestCase
             ->method('make')
             ->withConsecutive([ConfigurationExample::class], [ChildClass::class])
             ->willReturnOnConsecutiveCalls($customConfiguration, $childClassInstance);
+
+        $configuration = new CoreConfiguration($app, $file);
+
+        $configuration->setUp();
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Core\CoreConfiguration::setUp
+     *
+     * @throws ConfigurationException
+     */
+    public function testSetUpWhenConfigurationsIsEmpty(): void
+    {
+        $configurations = [];
+
+        $file = $this->createMock(File::class);
+        $file->expects(self::once())
+            ->method('requireAsArray')
+            ->with('config/app.php')
+            ->willReturn($configurations);
+
+        $router = $this->createMock(Router::class);
+        $router->expects(self::once())
+            ->method('configure')
+            ->with($configurations);
+
+        $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('make')
+            ->withConsecutive(
+                [Router::class]
+            )
+            ->willReturn(
+                $router
+            );
+
+        $configuration = new CoreConfiguration($app, $file);
+
+        $configuration->setUp();
+    }
+
+    /**
+     * @covers \Coozieki\Framework\Core\CoreConfiguration::setUp
+     *
+     * @throws ConfigurationException
+     */
+    public function testSetUpWhenConfigFileDoesntExist(): void
+    {
+        $file = $this->createMock(File::class);
+        $file->expects(self::once())
+            ->method('requireAsArray')
+            ->with('config/app.php')
+            ->willThrowException(new FileNotFoundException());
+
+        $app = $this->createMock(App::class);
 
         $configuration = new CoreConfiguration($app, $file);
 

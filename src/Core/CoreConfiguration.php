@@ -5,6 +5,7 @@ namespace Coozieki\Framework\Core;
 use Coozieki\Framework\Config\Configuration;
 use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Exceptions\ConfigurationException;
+use Coozieki\Framework\Exceptions\FileNotFoundException;
 use Coozieki\Framework\Routing\Router;
 use Coozieki\Framework\Support\File;
 
@@ -31,9 +32,13 @@ class CoreConfiguration extends Configuration
      */
     public function setUp(): void
     {
-        $appConfig = $this->file->requireAsArray($this->configPath . 'app.php');
+        try {
+            $appConfig = $this->file->requireAsArray($this->configPath . 'app.php');
+        } catch (FileNotFoundException) {
+            return;
+        }
 
-        $customConfigurations = $appConfig['configurations'] ?? null;
+        $customConfigurations = $appConfig['configurations'] ?? [];
 
         if (!is_array($customConfigurations)) {
             throw new ConfigurationException('$config["configurations"] must be an array of configuration classes.');
