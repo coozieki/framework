@@ -47,6 +47,6 @@ class App
         if (!is_subclass_of($templator, Templator::class)) {
             throw new ConfigurationException('Custom Templator class must be instance of ' . Templator::class);
         }
-        $this->container->register(Templator::class, $templator);
+        $this->container->singleton(Templator::class, $this->container->resolve($templator));
     }
 }

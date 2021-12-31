@@ -4,6 +4,7 @@ namespace Coozieki\Framework\Core;
 
 use Coozieki\Framework\Config\Configuration;
 use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
+use Coozieki\Framework\Contracts\View\Templator;
 use Coozieki\Framework\Exceptions\ConfigurationException;
 use Coozieki\Framework\Exceptions\FileNotFoundException;
 use Coozieki\Framework\Routing\Router;
@@ -55,5 +56,6 @@ class CoreConfiguration extends Configuration
         }
 
         $this->app->make(Router::class)->configure($appConfig);
+        $this->app->make(Templator::class)->configure($appConfig);
     }
 }

@@ -3,6 +3,7 @@
 namespace tests\Unit\Core;
 
 use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
+use Coozieki\Framework\Contracts\View\Templator;
 use Coozieki\Framework\Core\App;
 use Coozieki\Framework\Core\CoreConfiguration;
 use Coozieki\Framework\Exceptions\ConfigurationException;
@@ -41,18 +42,25 @@ class CoreConfigurationTest extends TestCase
             ->method('configure')
             ->with($configurations);
 
+        $templator = $this->createMock(Templator::class);
+        $templator->expects(self::once())
+            ->method('configure')
+            ->with($configurations);
+
         $app = $this->createMock(App::class);
-        $app->expects(self::exactly(3))
+        $app->expects(self::exactly(4))
             ->method('make')
             ->withConsecutive(
                 [ConfigurationExample::class],
                 [ConfigurationExample::class],
-                [Router::class]
+                [Router::class],
+                [Templator::class]
             )
             ->willReturn(
                 $customConfiguration,
                 $customConfiguration,
-                $router
+                $router,
+                $templator
             );
 
         $configuration = new CoreConfiguration($app, $file);
@@ -144,14 +152,21 @@ class CoreConfigurationTest extends TestCase
             ->method('configure')
             ->with($configurations);
 
+        $templator = $this->createMock(Templator::class);
+        $templator->expects(self::once())
+            ->method('configure')
+            ->with($configurations);
+
         $app = $this->createMock(App::class);
-        $app->expects(self::once())
+        $app->expects(self::exactly(2))
             ->method('make')
             ->withConsecutive(
-                [Router::class]
+                [Router::class],
+                [Templator::class]
             )
             ->willReturn(
-                $router
+                $router,
+                $templator
             );
 
         $configuration = new CoreConfiguration($app, $file);

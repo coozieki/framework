@@ -7,7 +7,6 @@ use Coozieki\Framework\Support\File;
 
 class BaseTemplator implements Templator
 {
-    //TODO: get views directory from configuration
     protected string $viewsPath = 'views';
 
     public function __construct(private File $file)
@@ -24,5 +23,12 @@ class BaseTemplator implements Templator
     protected function getFullPath(string $file): string
     {
         return $this->viewsPath . '/' . $file . '.php';
+    }
+
+    public function configure(array $config): void
+    {
+        if (isset($config['viewsPath'])) {
+            $this->viewsPath = $config['viewsPath'];
+        }
     }
 }

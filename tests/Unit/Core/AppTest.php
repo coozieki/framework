@@ -76,11 +76,16 @@ class AppTest extends TestCase
     public function testSetTemplatorClassIfInstanceOfTemplator(): void
     {
         $templator = TemplatorExample::class;
+        $templatorInstance = $this->createMock($templator);
 
         $container = $this->createMock(Container::class);
         $container->expects(self::once())
-            ->method('register')
-            ->with(Templator::class, $templator);
+            ->method('resolve')
+            ->with($templator)
+            ->willReturn($templatorInstance);
+        $container->expects(self::once())
+            ->method('singleton')
+            ->with(Templator::class, $templatorInstance);
 
         $app = new App($container);
 
