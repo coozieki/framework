@@ -17,7 +17,7 @@ class ControllerTest extends TestCase
     /**
      * @covers \Coozieki\Framework\Http\Controller::call
      *
-     * @throws MethodNotFoundException
+     * @throws MethodNotFoundException|ConfigurationException
      */
     public function testCallWhenMethodDoesntExist(): void
     {
@@ -37,7 +37,7 @@ class ControllerTest extends TestCase
      * @covers \Coozieki\Framework\Http\Controller::setTemplator
      * @covers \Coozieki\Framework\Http\Controller::setResponseFactory
      *
-     * @throws MethodNotFoundException
+     * @throws MethodNotFoundException|ConfigurationException
      */
     public function testCallWhenMethodExistsAndConfigured(): void
     {
