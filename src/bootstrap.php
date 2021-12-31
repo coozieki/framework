@@ -11,7 +11,7 @@ $app->bind(\Coozieki\Framework\Contracts\Http\Request::class, \Coozieki\Framewor
 $app->bind(\Coozieki\Framework\Contracts\Http\ControllerFactory::class, \Coozieki\Framework\Http\ControllerFactory::class);
 $app->bind(\Coozieki\Framework\Contracts\Routing\Route::class, \Coozieki\Framework\Routing\Route::class);
 $app->bind(\Coozieki\Framework\Contracts\Http\ResponseFactory::class, \Coozieki\Framework\Http\ResponseFactory::class);
-$app->bind(\Coozieki\Framework\Contracts\View\Templator::class, \Coozieki\Framework\View\BaseTemplator::class);
+$app->bind(\Coozieki\Framework\Contracts\View\Templator::class, \Coozieki\Framework\View\SimpleTemplator::class);
 
 $app->singleton(App::class, $app);
 $app->singleton(\Coozieki\Framework\Contracts\Routing\Router::class, $app->make(\Coozieki\Framework\Routing\Router::class));

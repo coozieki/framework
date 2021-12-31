@@ -3,26 +3,14 @@
 namespace Coozieki\Framework\View;
 
 use Coozieki\Framework\Contracts\View\Templator;
-use Coozieki\Framework\Support\File;
 
-class BaseTemplator implements Templator
+abstract class BaseTemplator implements Templator
 {
     protected string $viewsPath = 'views';
 
-    public function __construct(private File $file)
-    {
-    }
-
-    public function render(string $file, array $params): string
-    {
-        extract($params, EXTR_OVERWRITE);
-
-        return $this->file->requireAsText($this->getFullPath($file));
-    }
-
     protected function getFullPath(string $file): string
     {
-        return $this->viewsPath . '/' . $file . '.php';
+        return $this->viewsPath . '/' . $file;
     }
 
     public function configure(array $config): void
