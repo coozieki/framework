@@ -8,7 +8,7 @@ use Coozieki\Framework\Core\App;
 use Coozieki\Framework\Core\CoreConfiguration;
 use Coozieki\Framework\Exceptions\ConfigurationException;
 use Coozieki\Framework\Exceptions\FileNotFoundException;
-use Coozieki\Framework\Routing\Router;
+use Coozieki\Framework\Contracts\Routing\Router;
 use Coozieki\Framework\Support\File;
 use PHPUnit\Framework\TestCase;
 use tests\Unit\TestClasses\ChildClass;

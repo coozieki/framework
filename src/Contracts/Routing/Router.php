@@ -6,6 +6,7 @@ use Coozieki\Framework\Contracts\Http\Request;
 
 interface Router
 {
+    public function configure(array $config): void;
     /**
      * Gets current request route
      *

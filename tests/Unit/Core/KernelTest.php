@@ -14,6 +14,7 @@ use Coozieki\Framework\Core\Kernel;
 use Coozieki\Framework\Http\Response\NotFoundResponse;
 use Coozieki\Framework\Http\Response\ServerErrorResponse;
 use Coozieki\Framework\Routing\Exceptions\NotFoundException;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
@@ -113,17 +114,18 @@ class KernelTest extends TestCase
      */
     public function testHandleWhenThrowsServerError(): void
     {
+        $exception = new Exception();
+        $this->expectException($exception::class);
+        $this->expectExceptionMessage($exception->getMessage());
+
         $response = $this->createMock(ServerErrorResponse::class);
 
         $router = $this->createMock(Router::class);
         $router->expects(self::once())
             ->method('formRouteList')
-            ->willThrowException(new \Exception());
+            ->willThrowException($exception);
 
         $responseFactory = $this->createMock(ResponseFactory::class);
-        $responseFactory->expects(self::once())
-            ->method('serverError')
-            ->willReturn($response);
 
         $configuration = $this->createMock(CoreConfiguration::class);
         $configuration->expects(self::once())

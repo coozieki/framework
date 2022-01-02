@@ -3,6 +3,7 @@
 namespace Coozieki\Framework\Support;
 
 use Coozieki\Framework\Exceptions\FileNotFoundException;
+use Exception;
 
 class File
 {
@@ -11,10 +12,11 @@ class File
      */
     public function requireAsArray(string $filePath): array
     {
-        if (!file_exists($filePath)) {
+        try {
+            return require $filePath;
+        } catch (Exception) {
             throw new FileNotFoundException("File at path \"$filePath\" doesn't exist.");
         }
-        return require $filePath;
     }
 
     public function requireAsText(string $filePath): string

@@ -10,4 +10,9 @@ class TemplatorExample implements Templator
     {
         // TODO: Implement render() method.
     }
+
+    public function configure(array $config): void
+    {
+        // TODO: Implement configure() method.
+    }
 }
