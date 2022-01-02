@@ -42,7 +42,7 @@ class Kernel
         } catch (NotFoundException) {
             return $this->responseFactory->notFound();
         } catch (\Exception $exception) {
-            return $this->responseFactory->serverError();
+            throw $exception;
         }
     }
 }
