@@ -7,7 +7,7 @@ use Coozieki\Framework\Contracts\Config\Configuration as ConfigurationInterface;
 use Coozieki\Framework\Contracts\View\Templator;
 use Coozieki\Framework\Exceptions\ConfigurationException;
 use Coozieki\Framework\Exceptions\FileNotFoundException;
-use Coozieki\Framework\Routing\Router;
+use Coozieki\Framework\Contracts\Routing\Router;
 use Coozieki\Framework\Support\File;
 
 class CoreConfiguration extends Configuration
