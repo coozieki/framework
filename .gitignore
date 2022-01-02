@@ -20,8 +20,8 @@ Homestead.json
 
 #dev environment
 app/
-views/
+resources/views/
 config/
-routes/
+resources/routes/
 templates_c/
 coverage.txt

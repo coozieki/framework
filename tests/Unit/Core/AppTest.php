@@ -115,4 +115,19 @@ class AppTest extends TestCase
 
         $this->assertSame(App::$instance, $app);
     }
+
+    /**
+     * @covers \Coozieki\Framework\Core\App::getBasePath
+     * @covers \Coozieki\Framework\Core\App::setBasePath
+     */
+    public function testGetSetBasePath(): void
+    {
+        $basePath = 'base/path';
+        $app = new App($this->createMock(Container::class));
+
+        $this->assertEquals(getcwd(), $app->getBasePath());
+
+        $app->setBasePath($basePath);
+        $this->assertEquals($basePath, $app->getBasePath());
+    }
 }

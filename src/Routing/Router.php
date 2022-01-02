@@ -5,6 +5,7 @@ namespace Coozieki\Framework\Routing;
 use Coozieki\Framework\Contracts\Http\Request;
 use Coozieki\Framework\Contracts\Routing\Route;
 use Coozieki\Framework\Contracts\Routing\Router as RouterInterface;
+use Coozieki\Framework\Exceptions\FileNotFoundException;
 use Coozieki\Framework\Routing\Exceptions\NotFoundException;
 use Coozieki\Framework\Support\File;
 
@@ -13,6 +14,8 @@ class Router implements RouterInterface
     public const DEFAULT_ROUTES_PATH = 'routes/web.php';
 
     private string $routesPath = self::DEFAULT_ROUTES_PATH;
+
+    private string $basePath = '.';
 
     /**
      * @codeCoverageIgnore
@@ -26,9 +29,8 @@ class Router implements RouterInterface
 
     public function configure(array $config): void
     {
-        if (isset($config['routesPath'])) {
-            $this->setRoutesPath($config['routesPath']);
-        }
+        $this->routesPath = $config['routesPath'] ?? $this->routesPath;
+        $this->basePath = $config['basePath'] ?? $this->basePath;
     }
 
     /**
@@ -44,9 +46,12 @@ class Router implements RouterInterface
         return $route;
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     public function formRouteList(): void
     {
-        $routes = $this->file->requireAsArray($this->routesPath);
+        $routes = $this->file->requireAsArray($this->getFullRoutesPath());
         foreach ($routes as $route) {
             $this->collection->push($route);
         }
@@ -59,14 +64,9 @@ class Router implements RouterInterface
     {
         return $this->collection->all();
     }
-    
-    public function setRoutesPath(string $path): void
-    {
-        $this->routesPath = $path;
-    }
 
-    public function getRoutesPath(): string
+    private function getFullRoutesPath(): string
     {
-        return $this->routesPath;
+        return $this->file->formatPath($this->basePath.'/'.$this->routesPath);
     }
 }

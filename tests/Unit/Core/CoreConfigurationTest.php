@@ -23,14 +23,25 @@ class CoreConfigurationTest extends TestCase
      */
     public function testSetUpWhenConfigurationsIsArrayAndNoErrors(): void
     {
+        $basePath = getcwd();
+        $fullPath = $basePath.'/config/app.php';
+
         $configurations = [
             'configurations' => [ConfigurationExample::class, ConfigurationExample::class]
+        ];
+        $resultConfig = [
+            'configurations' => $configurations['configurations'],
+            'basePath' => $basePath
         ];
 
         $file = $this->createMock(File::class);
         $file->expects(self::once())
+            ->method('formatPath')
+            ->with($fullPath)
+            ->willReturn($fullPath);
+        $file->expects(self::once())
             ->method('requireAsArray')
-            ->with('config/app.php')
+            ->with($fullPath)
             ->willReturn($configurations);
 
         $customConfiguration = $this->createMock(ConfigurationExample::class);
@@ -40,14 +51,17 @@ class CoreConfigurationTest extends TestCase
         $router = $this->createMock(Router::class);
         $router->expects(self::once())
             ->method('configure')
-            ->with($configurations);
+            ->with($resultConfig);
 
         $templator = $this->createMock(Templator::class);
         $templator->expects(self::once())
             ->method('configure')
-            ->with($configurations);
+            ->with($resultConfig);
 
         $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('getBasePath')
+            ->willReturn($basePath);
         $app->expects(self::exactly(4))
             ->method('make')
             ->withConsecutive(
@@ -78,17 +92,27 @@ class CoreConfigurationTest extends TestCase
         $this->expectException(ConfigurationException::class);
         $this->expectExceptionMessage('$config["configurations"] must be an array of configuration classes.');
 
+        $basePath = getcwd();
+        $fullPath = $basePath.'/config/app.php';
+
         $configurations = [
             'configurations' => '::not_array::'
         ];
 
         $file = $this->createMock(File::class);
         $file->expects(self::once())
+            ->method('formatPath')
+            ->with($fullPath)
+            ->willReturn($fullPath);
+        $file->expects(self::once())
             ->method('requireAsArray')
-            ->with('config/app.php')
+            ->with($fullPath)
             ->willReturn($configurations);
 
         $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('getBasePath')
+            ->willReturn($basePath);
 
         $configuration = new CoreConfiguration($app, $file);
 
@@ -105,14 +129,21 @@ class CoreConfigurationTest extends TestCase
         $this->expectException(ConfigurationException::class);
         $this->expectExceptionMessage('Custom configuration class must be instance of ' . ConfigurationInterface::class . '.');
 
+        $basePath = getcwd();
+        $fullPath = $basePath.'/config/app.php';
+
         $configurations = [
             'configurations' => [ConfigurationExample::class, ChildClass::class]
         ];
 
         $file = $this->createMock(File::class);
         $file->expects(self::once())
+            ->method('formatPath')
+            ->with($fullPath)
+            ->willReturn($fullPath);
+        $file->expects(self::once())
             ->method('requireAsArray')
-            ->with('config/app.php')
+            ->with($fullPath)
             ->willReturn($configurations);
 
         $customConfiguration = $this->createMock(ConfigurationExample::class);
@@ -122,6 +153,9 @@ class CoreConfigurationTest extends TestCase
         $childClassInstance = $this->createMock(ChildClass::class);
 
         $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('getBasePath')
+            ->willReturn($basePath);
         $app->expects(self::exactly(2))
             ->method('make')
             ->withConsecutive([ConfigurationExample::class], [ChildClass::class])
@@ -139,25 +173,38 @@ class CoreConfigurationTest extends TestCase
      */
     public function testSetUpWhenConfigurationsIsEmpty(): void
     {
+        $basePath = getcwd();
+        $fullPath = $basePath.'/config/app.php';
+
         $configurations = [];
+        $resultConfig = [
+            'basePath' => $basePath
+        ];
 
         $file = $this->createMock(File::class);
         $file->expects(self::once())
+            ->method('formatPath')
+            ->with($fullPath)
+            ->willReturn($fullPath);
+        $file->expects(self::once())
             ->method('requireAsArray')
-            ->with('config/app.php')
+            ->with($fullPath)
             ->willReturn($configurations);
 
         $router = $this->createMock(Router::class);
         $router->expects(self::once())
             ->method('configure')
-            ->with($configurations);
+            ->with($resultConfig);
 
         $templator = $this->createMock(Templator::class);
         $templator->expects(self::once())
             ->method('configure')
-            ->with($configurations);
+            ->with($resultConfig);
 
         $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('getBasePath')
+            ->willReturn($basePath);
         $app->expects(self::exactly(2))
             ->method('make')
             ->withConsecutive(
@@ -181,13 +228,23 @@ class CoreConfigurationTest extends TestCase
      */
     public function testSetUpWhenConfigFileDoesntExist(): void
     {
+        $basePath = getcwd();
+        $fullPath = $basePath.'/config/app.php';
+
         $file = $this->createMock(File::class);
         $file->expects(self::once())
+            ->method('formatPath')
+            ->with($fullPath)
+            ->willReturn($fullPath);
+        $file->expects(self::once())
             ->method('requireAsArray')
-            ->with('config/app.php')
+            ->with($fullPath)
             ->willThrowException(new FileNotFoundException());
 
         $app = $this->createMock(App::class);
+        $app->expects(self::once())
+            ->method('getBasePath')
+            ->willReturn($basePath);
 
         $configuration = new CoreConfiguration($app, $file);
 

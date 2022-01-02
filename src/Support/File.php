@@ -26,4 +26,13 @@ class File
 
         return ob_get_clean();
     }
+
+    public function formatPath(string $path): string
+    {
+        $path = str_replace('\\', '/', $path);
+        while(strpos($path, '//')) {
+            $path = str_replace('//', '/', $path);
+        }
+        return $path;
+    }
 }

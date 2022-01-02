@@ -12,7 +12,7 @@ use Coozieki\Framework\Support\File;
 
 class CoreConfiguration extends Configuration
 {
-    private string $configPath = 'config/';
+    private string $configPath = 'config';
 
     private File $file;
 
@@ -33,12 +33,15 @@ class CoreConfiguration extends Configuration
      */
     public function setUp(): void
     {
+        $basePath = $this->app->getBasePath();
+
         try {
-            $appConfig = $this->file->requireAsArray($this->configPath . 'app.php');
+            $appConfig = $this->file->requireAsArray($this->file->formatPath($basePath.'/'.$this->configPath . '/app.php'));
         } catch (FileNotFoundException) {
             return;
         }
 
+        $appConfig['basePath'] = $basePath;
         $customConfigurations = $appConfig['configurations'] ?? [];
 
         if (!is_array($customConfigurations)) {

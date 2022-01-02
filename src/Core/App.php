@@ -10,6 +10,8 @@ class App
 {
     public static self $instance;
 
+    private string $basePath;
+
     /**
      * @codeCoverageIgnore
      *
@@ -17,6 +19,7 @@ class App
      */
     public function __construct(private Container $container)
     {
+        $this->basePath = getcwd();
         self::$instance = $this;
     }
 
@@ -48,5 +51,15 @@ class App
             throw new ConfigurationException('Custom Templator class must be instance of ' . Templator::class);
         }
         $this->container->singleton(Templator::class, $this->container->resolve($templator));
+    }
+
+    public function getBasePath(): string
+    {
+        return $this->basePath;
+    }
+
+    public function setBasePath(string $basePath): void
+    {
+        $this->basePath = $basePath;
     }
 }
